@@ -43,7 +43,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(645, 416);
+        MainWindow->resize(795, 458);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
@@ -56,17 +56,17 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(220, 0, 421, 351));
+        graphicsView->setGeometry(QRect(240, 0, 541, 401));
         tableWidget = new QTableWidget(centralWidget);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 0, 201, 321));
+        tableWidget->setGeometry(QRect(10, 0, 221, 361));
         scaleSpinBox = new QDoubleSpinBox(centralWidget);
         scaleSpinBox->setObjectName(QStringLiteral("scaleSpinBox"));
-        scaleSpinBox->setGeometry(QRect(140, 320, 74, 31));
+        scaleSpinBox->setGeometry(QRect(160, 360, 74, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 645, 27));
+        menuBar->setGeometry(QRect(0, 0, 795, 27));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));

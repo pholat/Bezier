@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>645</width>
-    <height>416</height>
+    <width>795</width>
+    <height>458</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,10 +28,10 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>220</x>
+      <x>240</x>
       <y>0</y>
-      <width>421</width>
-      <height>351</height>
+      <width>541</width>
+      <height>401</height>
      </rect>
     </property>
    </widget>
@@ -40,16 +40,16 @@
      <rect>
       <x>10</x>
       <y>0</y>
-      <width>201</width>
-      <height>321</height>
+      <width>221</width>
+      <height>361</height>
      </rect>
     </property>
    </widget>
    <widget class="QDoubleSpinBox" name="scaleSpinBox">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>320</y>
+      <x>160</x>
+      <y>360</y>
       <width>74</width>
       <height>31</height>
      </rect>
@@ -61,7 +61,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>645</width>
+     <width>795</width>
      <height>27</height>
     </rect>
    </property>

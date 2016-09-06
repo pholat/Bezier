@@ -2,7 +2,6 @@
 #include <QDebug>
 
 #include <QPainter>
-#include "GraphicsBezzierItem.h"
 #include <QtMath>
 
 // My funs:
@@ -36,9 +35,7 @@ QVector<QLine> genBezierLinearAprox( QVector<QPoint> points, unsigned int weight
     QPoint old = QPoint(points[0].x(),points[0].y());
     if ( points.size() > 2 ) {
         for(float u = 0; u <= 1; u += aprox ) {
-            float licznikX = 0;
-            float licznikY = 0;
-            float mianownik = 0;
+            float licznikX = 0, licznikY = 0, mianownik = 0;
             for(int i = 0; i < points.size(); i++) {
                 licznikX += weight*points[i].x() * polynomialB(i, points.size()-1, u);
                 licznikY += weight*points[i].y() * polynomialB(i, points.size()-1, u);
@@ -82,7 +79,7 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         bezierpoints.push_back( this->addEllipse(  pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
                                 QPen(), QBrush(Qt::SolidPattern))
                               );
-        render();
+        this->render();
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
@@ -112,7 +109,9 @@ void GraphicsScene::ChangePoint(QTableWidgetItem* it)
 {
     double rad = 1;
     unsigned int newval = it->text().toInt();
-    it->column();
+    if ( !( it->row() < bezierpoints.size() ) ) {
+        return; // This is when we actually add point not modify it...
+    }
     QAbstractGraphicsShapeItem* el = bezierpoints[it->row()];
 
     // move elipse to propper point

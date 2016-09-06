@@ -1295,7 +1295,6 @@ GraphicsScene.o: ../bezier/GraphicsScene.cpp ../bezier/GraphicsScene.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/QPainter \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qpainter.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qtextoption.h \
-		../bezier/GraphicsBezzierItem.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGraphicsItem \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QtMath \
 		../../../../Qt/5.5/gcc_64/include/QtCore/qmath.h
