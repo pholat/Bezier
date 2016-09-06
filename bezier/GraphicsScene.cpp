@@ -71,43 +71,58 @@ GraphicsScene::~GraphicsScene()
 
 void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-    static QVector<QPoint> testpoints;
-    static QVector<QGraphicsLineItem*> oldItems;
-
       if ( mouseEvent->button() == Qt::LeftButton)
       {
           double rad = 1;
           QPointF pt = mouseEvent->scenePos();
           testpoints.push_back(QPoint(pt.x(),pt.y()));
-          // TODO if I want to have it here.. I might want to save points coordinates too
-          this->bezierpoints.append(
-                      this->addEllipse( pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
-                                        QPen(), QBrush(Qt::SolidPattern))
-                  );
-          // TODO remove old pick before new
-          // for ( auto& val : testpoins ) {
 
-          // gen bezier
-          QVector<QLine> TT = genBezierLinearAprox( testpoints );
-
-          // remove old lines
-          for ( int i =0; i < oldItems.size(); ++i ) {
-              this->removeItem(oldItems[i]);
-          }
-          oldItems.clear();
-
-          // add new items on screen
-          for ( int i =0; i < TT.size(); ++i ){
-              oldItems.push_back( this->addLine(TT[i]) );
-          }
+          emit this->AddPoint(QPoint(pt.x(),pt.y()));
+          bezierpoints.push_back( this->addEllipse(  pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
+                                                     QPen(), QBrush(Qt::SolidPattern))
+                                 );
+          render();
       }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
-void GraphicsScene::removePoint(const int pos) {
-    if ( pos < this->bezierpoints.size() ) {
-        this->removeItem(this->bezierpoints[pos]);
-        this->bezierpoints.remove(pos);
+void GraphicsScene::render() {
+    QVector<QLine> TT = genBezierLinearAprox( testpoints );
+    for ( int i =0; i < oldItems.size(); ++i ) {
+        this->removeItem(oldItems[i]);
     }
+    oldItems.clear();
+    for ( int i =0; i < TT.size(); ++i ){
+        oldItems.push_back( this->addLine(TT[i]) );
+    }
+}
+
+void GraphicsScene::removePoint(const int pos) {
+//    if ( pos < this->bezierpoints.size() ) {
+//        this->removeItem(this->bezierpoints[pos]);
+//        this->bezierpoints.remove(pos);
+//    }
+}
+
+void GraphicsScene::ChangePoint(QTableWidgetItem* it) {
+    double rad = 1;
+    unsigned int newval = it->text().toInt();
+    it->column();
+    QAbstractGraphicsShapeItem* el = bezierpoints[it->row()];
+
+    // move elipse to propper point
+    this->removeItem(el);
+    if ( it->column() == 0 )
+        el = this->addEllipse( newval-rad, el->y(), rad*4.0, rad*4.0,
+                               QPen(), QBrush(Qt::SolidPattern));
+    else
+        el= this->addEllipse(  el->x(), newval-rad, rad*4.0, rad*4.0,
+                               QPen(), QBrush(Qt::SolidPattern));
+
+    // change value in old data
+    if ( it->row() == 0) this->testpoints[it->column()].setX(newval);
+    else                 this->testpoints[it->column()].setY(newval);
+    // render
+    render();
 }

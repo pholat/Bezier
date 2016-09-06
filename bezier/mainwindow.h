@@ -8,6 +8,8 @@
 #include "QGraphicsItem"
 #include "QTableWidgetItem"
 
+#include "QPoint"
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +24,12 @@ public:
 
 private slots:
     void on_scaleSpinBox_valueChanged(double arg1);
+    void TablePointAdd(QPoint);
+
+    void on_tableWidget_itemChanged(QTableWidgetItem *item);
+
+signals:
+    void ValueChanged(QTableWidgetItem*);
 
 private:
     Ui::MainWindow *ui;

@@ -7,11 +7,17 @@
 #include <QVector>
 // So that we could actually hold whatever elements
 #include <QAbstractGraphicsShapeItem>
+#include <QTableWidgetItem>
 
 class GraphicsScene : public QGraphicsScene
 {
 private:
     QVector<QAbstractGraphicsShapeItem*> bezierpoints;
+    QVector<QPoint> getPoints();
+    QVector<QGraphicsLineItem*> oldItems;
+    QVector<QPoint> testpoints;
+
+    void render();
 
     Q_OBJECT
 public:
@@ -25,6 +31,7 @@ signals:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 public slots:
+    void ChangePoint(QTableWidgetItem*);
 private:
 };
 

@@ -1110,6 +1110,8 @@ mainwindow.o: ../bezier/mainwindow.cpp ../bezier/mainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QButtonGroup \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QDoubleSpinBox \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qspinbox.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QHBoxLayout \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qlayout.h \
@@ -1125,7 +1127,8 @@ mainwindow.o: ../bezier/mainwindow.cpp ../bezier/mainwindow.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTableWidget \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QToolBar \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtoolbar.h \
-		../../../../Qt/5.5/gcc_64/include/QtWidgets/QWidget
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QWidget \
+		../../../../Qt/5.5/gcc_64/include/QtCore/QStringBuilder
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../bezier/mainwindow.cpp
 
 GraphicsScene.o: ../bezier/GraphicsScene.cpp ../bezier/GraphicsScene.h \
@@ -1234,7 +1237,39 @@ GraphicsScene.o: ../bezier/GraphicsScene.cpp ../bezier/GraphicsScene.h \
 		../bezier/GraphicsBezzierItem.h \
 		../../../../Qt/5.5/gcc_64/include/QtWidgets/QGraphicsItem \
 		../../../../Qt/5.5/gcc_64/include/QtCore/QtMath \
-		../../../../Qt/5.5/gcc_64/include/QtCore/qmath.h
+		../../../../Qt/5.5/gcc_64/include/QtCore/qmath.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/QTableWidgetItem \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtablewidget.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtableview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qpalette.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qcursor.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qevent.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qurl.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qurlquery.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qvector2d.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt/5.5/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt/5.5/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qtabwidget.h \
+		../../../../Qt/5.5/gcc_64/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GraphicsScene.o ../bezier/GraphicsScene.cpp
 
 GraphicsBezzierItem.o: ../bezier/GraphicsBezzierItem.cpp ../bezier/GraphicsBezzierItem.h \
