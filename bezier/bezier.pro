@@ -14,11 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    GraphicsScene.cpp \
-    GraphicsBezzierItem.cpp
+    GraphicsScene.cpp
 
 HEADERS  += mainwindow.h \
-    GraphicsScene.h \
-    GraphicsBezzierItem.h
+    GraphicsScene.h
 
 FORMS    += mainwindow.ui

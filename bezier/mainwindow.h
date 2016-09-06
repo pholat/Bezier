@@ -10,7 +10,8 @@
 
 #include "QPoint"
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 

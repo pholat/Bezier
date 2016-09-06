@@ -7,7 +7,8 @@
 
 // My funs:
 
-unsigned int fract(unsigned int val) {
+unsigned int fract(unsigned int val)
+{
     unsigned int tmp =1;
     for ( unsigned int i =2; i <= val; ++i ) {
         tmp = tmp*i;
@@ -15,7 +16,8 @@ unsigned int fract(unsigned int val) {
     return tmp;
 }
 
-float polynomialB(int i, int n, float u) {
+float polynomialB(int i, int n, float u)
+{
     if(i < 0 || i > n)
         return 0;
     else {
@@ -27,13 +29,13 @@ float polynomialB(int i, int n, float u) {
 }
 
 // void RysujKrzywa(SWezel *tablicaWezlow, int liczbaWezlow, TCanvas *Canvas) {
-QVector<QLine> genBezierLinearAprox( QVector<QPoint> points, unsigned int weight = 1, float aprox = 0.005 ) {
+QVector<QLine> genBezierLinearAprox( QVector<QPoint> points, unsigned int weight = 1, float aprox = 0.005 )
+{
     float x =0, y =0;
     QVector<QLine> retval;
     QPoint old = QPoint(points[0].x(),points[0].y());
     if ( points.size() > 2 ) {
-        for(float u = 0; u <= 1; u += aprox )
-        {
+        for(float u = 0; u <= 1; u += aprox ) {
             float licznikX = 0;
             float licznikY = 0;
             float mianownik = 0;
@@ -71,41 +73,43 @@ GraphicsScene::~GraphicsScene()
 
 void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-      if ( mouseEvent->button() == Qt::LeftButton)
-      {
-          double rad = 1;
-          QPointF pt = mouseEvent->scenePos();
-          testpoints.push_back(QPoint(pt.x(),pt.y()));
+    if ( mouseEvent->button() == Qt::LeftButton) {
+        double rad = 1;
+        QPointF pt = mouseEvent->scenePos();
+        testpoints.push_back(QPoint(pt.x(),pt.y()));
 
-          emit this->AddPoint(QPoint(pt.x(),pt.y()));
-          bezierpoints.push_back( this->addEllipse(  pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
-                                                     QPen(), QBrush(Qt::SolidPattern))
-                                 );
-          render();
-      }
+        emit this->AddPoint(QPoint(pt.x(),pt.y()));
+        bezierpoints.push_back( this->addEllipse(  pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
+                                QPen(), QBrush(Qt::SolidPattern))
+                              );
+        render();
+    }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
-void GraphicsScene::render() {
+void GraphicsScene::render()
+{
     QVector<QLine> TT = genBezierLinearAprox( testpoints );
     for ( int i =0; i < oldItems.size(); ++i ) {
         this->removeItem(oldItems[i]);
     }
     oldItems.clear();
-    for ( int i =0; i < TT.size(); ++i ){
+    for ( int i =0; i < TT.size(); ++i ) {
         oldItems.push_back( this->addLine(TT[i]) );
     }
 }
 
-void GraphicsScene::removePoint(const int pos) {
+void GraphicsScene::removePoint(const int pos)
+{
 //    if ( pos < this->bezierpoints.size() ) {
 //        this->removeItem(this->bezierpoints[pos]);
 //        this->bezierpoints.remove(pos);
 //    }
 }
 
-void GraphicsScene::ChangePoint(QTableWidgetItem* it) {
+void GraphicsScene::ChangePoint(QTableWidgetItem* it)
+{
     double rad = 1;
     unsigned int newval = it->text().toInt();
     it->column();

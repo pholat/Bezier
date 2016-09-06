@@ -30,13 +30,15 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_scaleSpinBox_valueChanged(double arg1) {
+void MainWindow::on_scaleSpinBox_valueChanged(double arg1)
+{
     if ( arg1 > 0 ) {
         ui->graphicsView->scale(arg1, arg1);
     }
 }
 
-void MainWindow::TablePointAdd(QPoint pt) {
+void MainWindow::TablePointAdd(QPoint pt)
+{
     // TODO this is bad... spank spank spank bad programmer
     unsigned int supersizeme = 3;
     static unsigned int pos = 0;
@@ -51,6 +53,7 @@ void MainWindow::TablePointAdd(QPoint pt) {
     ++pos;
 }
 
-void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item) {
+void MainWindow::on_tableWidget_itemChanged(QTableWidgetItem *item)
+{
 //    emit ValueChanged(item);
 }
