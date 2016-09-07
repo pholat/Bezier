@@ -12,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QRectF exactRect(0, 0, ui->graphicsView->width(), ui->graphicsView->height());
     ui->graphicsView->setSceneRect(exactRect);
     ui->graphicsView->setScene(scene);
-    //    ui->graphicsView->setCenterOn(exactRect.center());
 
     ui->tableWidget->setColumnCount(2);
     ui->tableWidget->setRowCount(0);
@@ -39,14 +38,11 @@ void MainWindow::on_scaleSpinBox_valueChanged(double arg1)
 
 void MainWindow::TablePointAdd(QPoint pt)
 {
-    // TODO this is bad... spank spank spank bad programmer
     unsigned int supersizeme = 1;
     static unsigned int pos = 0;
     if ( ! (pos < ui->tableWidget->rowCount()) ) {
         ui->tableWidget->setRowCount( ui->tableWidget->rowCount() + supersizeme );
     }
-
-    qDebug("Point: %d :: %d :: ", pt.x(), pt.y() );
 
     ui->tableWidget->setItem(pos, 0, new QTableWidgetItem( QString("%1").arg(pt.x())) );
     ui->tableWidget->setItem(pos, 1, new QTableWidgetItem( QString("%1").arg(pt.y())) );

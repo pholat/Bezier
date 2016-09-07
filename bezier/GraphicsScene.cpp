@@ -73,8 +73,8 @@ void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     if ( mouseEvent->button() == Qt::LeftButton) {
         double rad = 1;
         QPointF pt = mouseEvent->scenePos();
-        testpoints.push_back(QPoint(pt.x(),pt.y()));
 
+        testpoints.push_back(QPoint(pt.x(),pt.y()));
         emit this->AddPoint(QPoint(pt.x(),pt.y()));
         bezierpoints.push_back( this->addEllipse(  pt.x()-rad, pt.y()-rad, rad*4.0, rad*4.0,
                                 QPen(), QBrush(Qt::SolidPattern))
@@ -99,13 +99,12 @@ void GraphicsScene::render()
 
 void GraphicsScene::removePoint(const int pos)
 {
-//    if ( pos < this->bezierpoints.size() ) {
-//        this->removeItem(this->bezierpoints[pos]);
-//        this->bezierpoints.remove(pos);
-//    }
+    // 1) get localisation
+    // 2) remove from dataset
+    // 3) remove from display
 }
 
-void GraphicsScene::ChangePoint(QTableWidgetItem* it)
+void GraphicsScene::ModifyPoint(QTableWidgetItem* it)
 {
     double rad = 1;
     unsigned int newval = it->text().toInt();

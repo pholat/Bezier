@@ -31,7 +31,7 @@ signals:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 public slots:
-    void ChangePoint(QTableWidgetItem*);
+    void ModifyPoint(QTableWidgetItem*);
 private:
 };
 
