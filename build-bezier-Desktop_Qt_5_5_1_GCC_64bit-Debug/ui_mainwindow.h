@@ -18,6 +18,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
@@ -29,6 +30,8 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionSave;
+    QAction *actionLoad;
     QWidget *centralWidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
@@ -36,14 +39,21 @@ public:
     QTableWidget *tableWidget;
     QDoubleSpinBox *scaleSpinBox;
     QMenuBar *menuBar;
+    QMenu *menuSave_data;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QToolBar *toolBar;
+    QToolBar *toolBar_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(795, 458);
+        actionSave = new QAction(MainWindow);
+        actionSave->setObjectName(QStringLiteral("actionSave"));
+        actionLoad = new QAction(MainWindow);
+        actionLoad->setObjectName(QStringLiteral("actionLoad"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
@@ -67,6 +77,8 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 795, 27));
+        menuSave_data = new QMenu(menuBar);
+        menuSave_data->setObjectName(QStringLiteral("menuSave_data"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -74,8 +86,20 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QStringLiteral("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
+        toolBar_2 = new QToolBar(MainWindow);
+        toolBar_2->setObjectName(QStringLiteral("toolBar_2"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar_2);
+
+        menuBar->addAction(menuSave_data->menuAction());
+        menuSave_data->addAction(actionSave);
+        menuSave_data->addAction(actionLoad);
 
         retranslateUi(MainWindow);
+        QObject::connect(actionSave, SIGNAL(triggered()), MainWindow, SLOT(saveFileClicked()));
+        QObject::connect(actionLoad, SIGNAL(triggered()), MainWindow, SLOT(loadFileClicked()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -83,6 +107,11 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
+        actionSave->setText(QApplication::translate("MainWindow", "Save", 0));
+        actionLoad->setText(QApplication::translate("MainWindow", "Load", 0));
+        menuSave_data->setTitle(QApplication::translate("MainWindow", "Data", 0));
+        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
+        toolBar_2->setWindowTitle(QApplication::translate("MainWindow", "toolBar_2", 0));
     } // retranslateUi
 
 };

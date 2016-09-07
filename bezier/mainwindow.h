@@ -31,6 +31,10 @@ private slots:
 
     void on_tableWidget_entered(const QModelIndex &index);
 
+public slots:
+    void loadFileClicked();
+    void saveFileClicked();
+
 signals:
     void ValueChanged(QTableWidgetItem*);
 

@@ -13,10 +13,8 @@ class GraphicsScene : public QGraphicsScene
 {
 private:
     QVector<QAbstractGraphicsShapeItem*> bezierpoints;
-    QVector<QPoint> getPoints();
     QVector<QGraphicsLineItem*> oldItems;
     QVector<QPoint> testpoints;
-
     void render();
 
     Q_OBJECT
@@ -24,6 +22,9 @@ public:
     explicit GraphicsScene(QObject *parent = 0);
     ~GraphicsScene();
     void removePoint(const int pos);
+    const QVector<QPoint> getPoints() {
+        return testpoints;
+    }
 
 signals:
     void AddPoint(QPoint pt);
