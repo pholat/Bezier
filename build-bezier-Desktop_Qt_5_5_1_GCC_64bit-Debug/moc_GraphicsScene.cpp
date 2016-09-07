@@ -33,11 +33,11 @@ QT_MOC_LITERAL(0, 0, 13), // "GraphicsScene"
 QT_MOC_LITERAL(1, 14, 8), // "AddPoint"
 QT_MOC_LITERAL(2, 23, 0), // ""
 QT_MOC_LITERAL(3, 24, 2), // "pt"
-QT_MOC_LITERAL(4, 27, 11), // "ChangePoint"
+QT_MOC_LITERAL(4, 27, 11), // "ModifyPoint"
 QT_MOC_LITERAL(5, 39, 17) // "QTableWidgetItem*"
 
     },
-    "GraphicsScene\0AddPoint\0\0pt\0ChangePoint\0"
+    "GraphicsScene\0AddPoint\0\0pt\0ModifyPoint\0"
     "QTableWidgetItem*"
 };
 #undef QT_MOC_LITERAL
@@ -77,7 +77,7 @@ void GraphicsScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->AddPoint((*reinterpret_cast< QPoint(*)>(_a[1]))); break;
-        case 1: _t->ChangePoint((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
+        case 1: _t->ModifyPoint((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

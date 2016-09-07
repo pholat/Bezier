@@ -4,6 +4,8 @@
 #include <QPainter>
 #include <QtMath>
 
+#include <vector>
+
 // My funs:
 
 unsigned int fract(unsigned int val)
@@ -27,23 +29,76 @@ float polynomialB(int i, int n, float u)
     }
 }
 
-// void RysujKrzywa(SWezel *tablicaWezlow, int liczbaWezlow, TCanvas *Canvas) {
+// just for show
+template < class A>
+class MyList {
+private:
+    A *dataset;
+    unsigned int increment;
+    unsigned int size;
+    unsigned int pos;
+    void allocMem() {
+        A *tmp = new A[size+increment];
+        for ( unsigned int i =0; i < pos; ++i ) {
+            *(tmp+1) = *(dataset+1);
+        }
+        delete[] dataset;
+        dataset = tmp;
+        size += increment;
+    }
+
+public:
+    MyList() {
+        increment = 1000;
+        size = increment;
+        pos = 0;
+        dataset = new A[size];
+    }
+
+    ~MyList() {
+        delete[] dataset;
+    }
+
+    A& operator[] (unsigned int val) {
+        if ( val < pos ) {
+            return dataset[val];
+        }
+    }
+
+    MyList& push_back(A val) {
+        if ( !( pos+1 < size) ) {
+            allocMem();
+        }
+        dataset[pos] = val;
+        pos++;
+        return *this;
+    }
+
+    A* begin() {
+        return dataset;
+    }
+    A* end() {
+        return dataset+pos;
+    }
+};
+
+// refactored and translated code from book
 QVector<QLine> genBezierLinearAprox( QVector<QPoint> points, unsigned int weight = 1, float aprox = 0.005 )
 {
     float x =0, y =0;
-    QVector<QLine> retval;
+    MyList<QLine> retval;
     QPoint old = QPoint(points[0].x(),points[0].y());
     if ( points.size() > 2 ) {
         for(float u = 0; u <= 1; u += aprox ) {
-            float licznikX = 0, licznikY = 0, mianownik = 0;
+            float numeratorX = 0, numeratorY = 0, denominator = 0;
             for(int i = 0; i < points.size(); i++) {
-                licznikX += weight*points[i].x() * polynomialB(i, points.size()-1, u);
-                licznikY += weight*points[i].y() * polynomialB(i, points.size()-1, u);
-                mianownik+= weight * polynomialB(i, points.size()-1, u);
+                numeratorX += weight*points[i].x() * polynomialB(i, points.size()-1, u);
+                numeratorY += weight*points[i].y() * polynomialB(i, points.size()-1, u);
+                denominator+= weight * polynomialB(i, points.size()-1, u);
             }
-            if(mianownik != 0) {
-                x = licznikX/mianownik;
-                y = licznikY/mianownik;
+            if(denominator != 0) {
+                x = numeratorX/denominator;
+                y = numeratorY/denominator;
             } else {
                 x = 0;
                 y = 0;
@@ -52,7 +107,7 @@ QVector<QLine> genBezierLinearAprox( QVector<QPoint> points, unsigned int weight
             old = QPoint(x,y);
         }
     }
-    return retval;
+    return QVector<QLine>::fromStdVector(std::vector<QLine>(retval.begin(),retval.end()));
 }
 
 // ########################
